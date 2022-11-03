@@ -3,6 +3,7 @@ const express = require("express");
 
 //import  middleware
 const checkAnton = require("../middleware/checkAnton");
+const validate = require("../middleware/validate");
 
 // import anton controller
 const antonController = require("../controllers/anton");
@@ -11,10 +12,10 @@ const antonController = require("../controllers/anton");
 const router = express.Router();
 
 // Create anton
-router.post("/", antonController.create_anton);
+router.post("/", validate, antonController.create_anton);
 
 // // Update anton
-router.patch("/:atn", checkAnton, antonController.update_anton);
+router.patch("/:atn", validate, checkAnton, antonController.update_anton);
 
 // // Delete anton
 router.delete("/:atn", checkAnton, antonController.delete_anton);
